@@ -4,8 +4,9 @@ from PIL import Image
 from matplotlib import pyplot as plt
 import os
 import sys
-
+img_types=["jpg", "png"]
 examples_dir = os.path.dirname(__file__)
+images_dir = os.path.join(examples_dir, "images3")
 weights_dir = os.path.join(examples_dir,'..','weights')
 sys.path.insert(0, os.path.join(examples_dir, '..', 'python'))
 
@@ -62,9 +63,15 @@ else: # running on cpu requires channels_last data format
 #
 
 # read data
-img1 = Image.open(os.path.join(examples_dir,'sculpture1.png'))
-img2 = Image.open(os.path.join(examples_dir,'sculpture2.png'))
 
+#img1 = Image.open(os.path.join(images_dir,'sculpture1.png'))
+#img2 = Image.open(os.path.join(images_dir,'sculpture2.png'))
+import glob
+
+#imgs_name=glob.glob(os.path.join(images_dir,"*.png"))
+imgs_name=glob.glob(os.path.join(images_dir,"*.jpg"))
+imgs = [ Image.open(img_name) for img_name in imgs_name ]
+img1, img2 = imgs[:2]
 input_data = prepare_input_data(img1,img2,data_format)
 
 gpu_options = tf.GPUOptions()
