@@ -4,6 +4,7 @@ from PIL import Image
 from matplotlib import pyplot as plt
 import os
 import sys
+os.environ["TF_CPP_MIN_LOG_LEVEL"]='2' #  warning and Error only  
 img_types=["jpg", "png"]
 examples_dir = os.path.dirname(__file__)
 images_dir = os.path.join(examples_dir, "images3")
@@ -76,7 +77,9 @@ input_data = prepare_input_data(img1,img2,data_format)
 
 gpu_options = tf.GPUOptions()
 gpu_options.per_process_gpu_memory_fraction=0.8
-session = tf.InteractiveSession(config=tf.ConfigProto(allow_soft_placement=True, gpu_options=gpu_options))
+session = tf.InteractiveSession(config=tf.ConfigProto(allow_soft_placement=True,
+                                inter_op_parallelism_threads = 4,
+                                gpu_options=gpu_options))
 
 # init networks
 bootstrap_net = BootstrapNet(session, data_format)
