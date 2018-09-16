@@ -162,7 +162,7 @@ def flow_block_demon_original(image_pair, image2_2=None, intrinsics=None, prev_p
             )
         # set flow vectors to zero if the motion is too large.
         # this also eliminates nan values which can be produced by very bad camera parameters
-        flow_from_depth_motion_norm = tf.norm(_flow_from_depth_motion, axis=1, keep_dims=True)
+        flow_from_depth_motion_norm = tf.norm(_flow_from_depth_motion, axis=1, keepdims=True)
         flow_from_depth_motion_norm = tf.concat((flow_from_depth_motion_norm, flow_from_depth_motion_norm),axis=1)
         tmp_zeros = tf.zeros_like(_flow_from_depth_motion,dtype=tf.float32)
         flow_from_depth_motion =  tf.where( flow_from_depth_motion_norm < 1.0, _flow_from_depth_motion, tmp_zeros)

@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 tensorflow-gpu
 pillow
 matplotlib
 Cython
+=======
+tensorflow
+pillow
+matplotlib
+Cython
+vtk
+>>>>>>> aba19aa9d7b54c5113fbce2ccf093289a9ca7b0c
